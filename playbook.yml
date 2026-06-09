@@ -1,18 +1,26 @@
 ---
-- name: Deploy test EC2 instance
+- name: Deploy EC2
   hosts: localhost
   connection: local
   gather_facts: false
 
   tasks:
+
+    - name: Show variables
+      debug:
+        msg:
+          - "EC2 Name: {{ ec2_name }}"
+          - "Instance Type: {{ instance_type }}"
+
     - name: Launch EC2 instance
       amazon.aws.ec2_instance:
-        name: awx-test-ec2
+        name: "{{ ec2_name }}"
         key_name: Admin
         instance_type: "{{ instance_type }}"
         image_id: ami-0152204c1a187337c
         region: us-east-1
         wait: true
         tags:
+          Name: "{{ ec2_name }}"
           Environment: Lab
           CreatedBy: AWX
