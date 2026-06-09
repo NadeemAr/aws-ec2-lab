@@ -7,7 +7,7 @@
   tasks:
     - name: Launch EC2 instance
       amazon.aws.ec2_instance:
-        name: "{{ server_name }}"
+        name: awx-test-ec2
         key_name: Admin
         instance_type: "{{ instance_type }}"
         image_id: ami-0152204c1a187337c
