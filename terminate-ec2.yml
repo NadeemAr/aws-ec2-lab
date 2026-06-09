@@ -1,0 +1,14 @@
+---
+- name: Terminate EC2 instance from AWX
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  become: false
+
+  tasks:
+    - name: Terminate EC2 instance by name
+      amazon.aws.ec2_instance:
+        name: "{{ ec2_name }}"
+        region: "{{ aws_region | default('us-east-1') }}"
+        state: absent
+        wait: true
