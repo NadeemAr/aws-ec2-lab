@@ -15,7 +15,7 @@
     - name: Launch EC2 instance
       amazon.aws.ec2_instance:
         name: "{{ ec2_name }}"
-        key_name: Admin
+        key_name: admin
         instance_type: "{{ instance_type }}"
         image_id: ami-0152204c1a187337c
         region: us-east-1
